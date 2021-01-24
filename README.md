@@ -28,7 +28,7 @@ cd src/configs > node db.js createAllTables<br/>
 ### postman
 
 open postman: localhost:8000<br/>
-![postman](https://www.getpostman.com/collections/fdd09870246310adf1dc)
+![https://www.getpostman.com/collections/fdd09870246310adf1dc]postman
  
 ### Swagger
 
