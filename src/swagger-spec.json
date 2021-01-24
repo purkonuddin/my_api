@@ -1,0 +1,329 @@
+{
+    "info": {
+      "title": "Documenting REST API's",
+      "version": "1.0.0",
+      "description": "This is an implementation of how to document your RESTful API's using SWAGGER"
+    },
+    "host": "localhost:8000",
+    "basePath": "/",
+    "swagger": "2.0",
+    "paths": {
+      "/": {
+        "get": {
+          "description": "Returns the homepage",
+          "responses": {
+            "200": {
+              "description": "RestFull Api with nodejs, expressjs and postgress, and sweger testing"
+            }
+          }
+        }
+      },
+      "/user": {
+        "get": {
+          "description": "Search users by name",
+          "tags": ["Users"],
+          "produces": ["application/json"],
+          "parameters": [
+            {
+              "$ref": "#/parameters/searchname"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Users",
+              "schema": {
+                "type": "array",
+                "$ref": "#/definitions/User"
+              }
+            }
+          }
+        }
+      },
+      "/user/register": {
+        "post": {
+          "description": "Registration new user",
+          "tags": ["Users"],
+          "produces": ["application/json"],
+          "parameters": [
+            {
+              "$ref": "#/parameters/username"
+            },
+            {
+                "$ref": "#/parameters/password"
+            },
+            {
+                "$ref": "#/parameters/name"
+            },
+            {
+                "$ref": "#/parameters/email"
+            },
+            {
+                "$ref": "#/parameters/referral_code"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "users",
+              "schema": {
+                "type": "object",
+                "$ref": "#/definitions/User"
+              }
+            }
+          }
+        } 
+      },
+      "/user/login": { 
+        "post": {
+            "description": "Login to the application",
+            "tags": ["Users"],
+            "produces": ["application/json"],
+            "parameters": [
+              {
+                "$ref": "#/parameters/username"
+              },
+              {
+                "$ref": "#/parameters/password"
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "login",
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/definitions/Login"
+                }
+              }
+            }
+          }
+      },
+      "/user/editprofile": { 
+        "patch": {
+          "description": "Returns users",
+          "tags": ["Users"],
+          "produces": ["application/json"],
+          "parameters": [
+            {
+                "$ref": "#/parameters/user-id"
+            },
+            {
+                "$ref": "#/parameters/token"
+            },
+            {
+              "$ref": "#/parameters/name"
+            },
+            {
+                "$ref": "#/parameters/email"
+              }
+          ],
+          "responses": {
+            "200": {
+              "description": "user's data"
+            }
+          }
+        }
+      },
+      "/referral": { 
+        "post": {
+          "description": "Input Referral Code",
+          "tags": ["Referral"],
+          "produces": ["application/json"],
+          "parameters": [
+            {
+              "$ref": "#/parameters/user-id"
+            },
+            {
+                "$ref": "#/parameters/token"
+            },
+            {
+                "$ref": "#/parameters/referral_code"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "success submit to referral table"
+            }
+          }
+        }
+      },
+      "/hero": { 
+        "post": {
+          "description": "Returns singgle hero description",
+          "tags": ["Hero"],
+          "produces": ["application/json"],
+          "parameters": [
+            {
+              "$ref": "#/parameters/name"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "hero description"
+            }
+          }
+        }
+      }
+    },
+    "definitions": { 
+      "Login": {
+        "required": ["username", "password", "name", "email" ],
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "username": {
+            "type": "string"
+          },
+          "password": {
+            "type": "password"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "referral_code": {
+            "type": "string"
+          },
+          "salt": {
+            "type": "string"
+          },
+          "created": {
+            "type": "password"
+          },
+          "token": {
+            "type": "string"
+          }
+        }
+      },
+      "User": {
+        "required": ["username", "password", "name", "email" ],
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "username": {
+            "type": "string"
+          },
+          "password": {
+            "type": "password"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "referral_code": {
+            "type": "string"
+          },
+          "salt": {
+            "type": "string"
+          },
+          "created": {
+            "type": "dateTime"
+          },
+          "updated": {
+            "type": "dateTime"
+          }
+        }
+      },
+      "Referral": {
+        "required": ["up_line, down_line, referral_code"],
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "up_line": {
+            "type": "integer"
+          },
+          "down_line": {
+            "type": "integer"
+          },
+          "referral_code": {
+            "type": "string"
+          },
+          "created": {
+            "type": "dateTime"
+          },
+          "updated": {
+            "type": "dateTime"
+          }
+        }
+      }
+    },
+    "responses": {},
+    "parameters": {
+      "username": {
+        "name": "username",
+        "description": "Username to use for login.",
+        "in": "formData",
+        "required": true,
+        "type": "string"
+      },
+      "password": {
+        "name": "password",
+        "description": "Password to use for login.",
+        "in": "formData",
+        "required": true,
+        "type": "string"
+      },
+      "name": {
+        "name": "name",
+        "description": "data user to display",
+        "in": "formData",
+        "required": false,
+        "type": "string"
+      },
+      "email":{
+        "name": "email",
+        "description": "email",
+        "in": "formData",
+        "required": true,
+        "type": "string"
+      },
+      "referral_code":{
+        "name": "referral_code",
+        "description": "referral_code",
+        "in": "formData",
+        "required": false,
+        "type": "string"
+      },
+      "user-id": {
+        "name": "user-id",
+        "description": "user id ",
+        "in": "header",
+        "required": true,
+        "type": "string"
+      },
+      "token": {
+        "name": "authorization",
+        "description": "token",
+        "in": "header",
+        "required": true,
+        "type": "string"
+      },
+      "searchname": {
+        "name": "name",
+        "description": "name",
+        "in": "query",
+        "required": true,
+        "type": "string"
+      }
+    },
+    "securityDefinitions": {},
+    "tags": [
+      {
+        "name": "Users",
+        "description": "Get user's data, registration, search user by name and login"
+      },
+      {
+        "name": "Referral",
+        "description": "Input Referral Code"
+      },
+      {
+        "name": "Hero",
+        "description": "Search hero's name"
+      }
+    ]
+  }

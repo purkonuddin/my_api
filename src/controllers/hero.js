@@ -46,7 +46,7 @@ module.exports = {
             });  
 
             request.heroArr = heroArr;
-            request.toSearch = request.query.name || "";
+            request.toSearch = request.body.name || "";
             next()
 
         

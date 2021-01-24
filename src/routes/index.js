@@ -5,7 +5,7 @@ const referral = require("./referral");
 const hero = require("./hero"); 
 
 Route.use("/user", userRoute) 
-  .use("/referral", referral)
+  .use("/referral", referral) 
   .use("/hero", hero) 
 
 module.exports = Route;

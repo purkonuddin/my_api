@@ -5,7 +5,7 @@ const jwtdecode = require("jwt-decode");
 module.exports = {
   authentication: (request, response, next) => { 
     
-    const headerToken = request.headers.authorization.split(' ')[1]
+    const headerToken = request.headers['authorization'].split(' ')[1]
     const userId = request.headers['user-id']
     if (headerToken === undefined) {
       response.json({ message: 'Please provide Token!' })
