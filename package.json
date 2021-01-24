@@ -31,5 +31,13 @@
     "uniqid": "^5.2.0"
   },
   "devDependencies": {},
-  "description": ""
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/purkonuddin/my_api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/purkonuddin/my_api/issues"
+  },
+  "homepage": "https://github.com/purkonuddin/my_api#readme"
 }
